@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mary E. Squire</title>
+<meta name="description" content="Mary E. Squire — biomedical engineer and cofounder of HeadStrait Labs, building medical devices from first sketch to clinical pilot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2F6F6;
+    --surface: #FFFFFF;
+    --ink: #142A33;
+    --muted: #556A72;
+    --line: #D3DEE0;
+    --teal: #0A7C86;
+    --marigold: #F2B33D;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1D23;
+      --surface: #16282F;
+      --ink: #E7EFF0;
+      --muted: #9DB1B6;
+      --line: #2A3F46;
+      --teal: #4FC3CC;
+      --marigold: #F2B33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1D23; --surface: #16282F; --ink: #E7EFF0; --muted: #9DB1B6;
+    --line: #2A3F46; --teal: #4FC3CC; --marigold: #F2B33D;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  /* Nav */
+  nav { padding: 22px 0; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .mark { font: 800 1.15rem/1 var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; flex-wrap: wrap; }
+  nav ul a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  nav ul a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 48px 0 24px; }
+  .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+  .hero h1 {
+    font: 800 clamp(2.5rem, 6.4vw, 4.6rem)/1.02 var(--display);
+    letter-spacing: -0.03em;
+    margin: 0 0 22px;
+  }
+  .hero p.lede { font-size: 1.2rem; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 999px;
+    font: 600 1rem/1 var(--body); text-decoration: none;
+    border: 2px solid var(--ink); color: var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn:hover { transform: translateY(-1px); }
+  .portrait {
+    aspect-ratio: 4 / 5; border-radius: 24px 24px 120px 24px;
+    background: var(--surface); border: 2px dashed var(--line);
+    display: grid; place-items: center; text-align: center;
+    color: var(--muted); font-size: 0.95rem; padding: 24px; overflow: hidden;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Vital-sign trace: the one motion moment */
+  .trace { width: 100%; height: 90px; margin-top: 40px; }
+  .trace path {
+    fill: none; stroke: var(--teal); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1600; stroke-dashoffset: 1600;
+    animation: draw 2.4s ease-out 0.3s forwards;
+  }
+  .trace circle { fill: var(--marigold); opacity: 0; animation: pop 0.4s ease-out 2.6s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .trace path { animation: none; stroke-dashoffset: 0; }
+    .trace circle { animation: none; opacity: 1; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* Sections */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font: 800 clamp(1.9rem, 4vw, 2.6rem)/1.1 var(--display);
+    letter-spacing: -0.02em; margin: 0 0 16px;
+  }
+  h3 { font: 600 1.3rem/1.25 var(--display); margin: 0 0 6px; }
+  .intro { color: var(--muted); max-width: 40em; margin: 0 0 40px; font-size: 1.1rem; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .about-grid p { margin: 0 0 16px; max-width: 34em; }
+  .traits { list-style: none; margin: 0; padding: 0; }
+  .traits li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .traits li:first-child { padding-top: 0; }
+  .traits strong { display: block; font: 600 1.1rem/1.3 var(--display); margin-bottom: 4px; }
+  .traits span { color: var(--muted); }
+
+  /* HeadStrait timeline — a real sequence, so it's numbered */
+  .company-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .role { color: var(--muted); font-weight: 500; }
+  .gens { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: gen; }
+  .gens li { counter-increment: gen; position: relative; padding-top: 56px; }
+  .gens li::before {
+    content: counter(gen);
+    position: absolute; top: 0; left: 0;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    font: 800 1.1rem/1 var(--display);
+    background: var(--surface); border: 2px solid var(--teal); color: var(--teal);
+  }
+  .gens li:last-child::before { background: var(--marigold); border-color: var(--marigold); color: #142A33; }
+  .gens li::after {
+    content: ""; position: absolute; top: 20px; left: 48px; right: -8px;
+    height: 2px; background: var(--line);
+  }
+  .gens li:last-child::after { display: none; }
+  .gens h4 { font: 600 1.05rem/1.3 var(--display); margin: 0 0 4px; }
+  .gens p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .photo-slot {
+    aspect-ratio: 4 / 3; margin-bottom: 12px; border-radius: 12px;
+    background: var(--surface); border: 2px dashed var(--line);
+    display: grid; place-items: center; color: var(--muted); font-size: 0.8rem; text-align: center; padding: 8px;
+    overflow: hidden;
+  }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+
+  .wins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+  .wins div { border-left: 3px solid var(--marigold); padding-left: 16px; }
+  .wins strong { display: block; font: 800 1.6rem/1.15 var(--display); }
+  .wins span { color: var(--muted); font-size: 0.97rem; }
+
+  /* Experience / education */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .entry { margin-bottom: 32px; }
+  .entry .meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+  .entry ul { margin: 0; padding-left: 20px; }
+  .entry li { margin-bottom: 6px; }
+
+  .programs { list-style: none; margin: 0; padding: 0; }
+  .programs li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .programs strong { font-weight: 600; }
+  .programs span { display: block; color: var(--muted); font-size: 0.95rem; }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0 0; }
+  .tools li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.92rem; }
+
+  /* Recognition */
+  .years { display: grid; grid-template-columns: 120px 1fr; gap: 8px 32px; }
+  .years dt { font: 800 1.5rem/1.3 var(--display); color: var(--teal); padding-top: 14px; }
+  .years dd { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .years dd ul { margin: 0; padding: 0; list-style: none; }
+  .years dd li { padding: 4px 0; }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--bg); border-top: none; }
+  .contact h2 { color: var(--bg); }
+  .contact p { color: var(--bg); opacity: 0.85; max-width: 34em; font-size: 1.15rem; }
+  .contact .btn { border-color: var(--bg); color: var(--bg); }
+  .contact .btn.primary { background: var(--marigold); border-color: var(--marigold); color: #142A33; }
+  footer { background: var(--ink); color: var(--bg); opacity: 0.95; padding: 0 0 32px; font-size: 0.9rem; }
+  footer p { margin: 0; opacity: 0.6; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .hero-grid, .about-grid, .two-col { grid-template-columns: 1fr; gap: 36px; }
+    .portrait { max-width: 320px; }
+    .gens { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+    .gens li::after { display: none; }
+    .wins { grid-template-columns: 1fr; gap: 20px; }
+  }
+  @media (max-width: 520px) {
+    .gens { grid-template-columns: 1fr; }
+    .years { grid-template-columns: 1fr; gap: 0; }
+    .years dt { padding-top: 20px; }
+    section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">Mary E. Squire</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#headstrait">HeadStrait</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#recognition">Recognition</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>I build medical devices, and the teams and partnerships that get them to patients.</h1>
+        <p class="lede">I'm a biomedical engineer and cofounder of HeadStrait Labs in Pittsburgh. I've taken a device for emergency medical transport from first sketch to a pilot-ready system, and I'm just as comfortable in the machine shop as I am in a pitch meeting or a hospital research office.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:marysquire2021@gmail.com">Email me</a>
+          <a class="btn" href="https://linkedin.com/in/maryesquire" target="_blank" rel="noopener">LinkedIn</a>
+          <!-- To add a resume button: upload your PDF to the repo as resume.pdf, then remove the comment marks below -->
+          <!-- <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a> -->
+        </div>
+      </div>
+      <div class="portrait">
+        <!-- Replace this text with your headshot: <img src="headshot.jpg" alt="Mary Squire"> -->
+        Add a headshot here
+      </div>
+    </div>
+
+    <svg class="trace" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 55 H180 L200 55 L215 30 L230 75 L245 15 L262 80 L278 55 H420 L438 55 L452 35 L466 72 L480 20 L496 78 L510 55 H660 L676 55 L690 32 L704 74 L718 12 L734 82 L748 55 H970"/>
+      <circle cx="975" cy="55" r="7"/>
+    </svg>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <h2>About me</h2>
+        <p>I started out in biosystems engineering at Michigan State, spent a year on a manufacturing floor making cleanrooms and production lines run better, then came to Carnegie Mellon for two master's degrees: one in biomedical engineering and one in engineering and technology innovation management.</p>
+        <p>Somewhere in there I realized the hardest part of medical innovation isn't the engineering. It's getting clinicians, investors, engineers, and regulators to believe in the same thing. That's the part I love.</p>
+        <!-- Make this yours: add a sentence or two about what you're like outside work, what drew you to emergency medicine, or what you're looking for next. -->
+      </div>
+      <ul class="traits">
+        <li>
+          <strong>I bring people along</strong>
+          <span>Raised $700K+ by building financial models and pitch decks investors bought into, and represented the U.S. at the Greater Zurich Area HealthTech Roadshow.</span>
+        </li>
+        <li>
+          <strong>I build bridges with clinicians</strong>
+          <span>Designed and ran an IRB-approved clinical study with UPMC, from protocol and endpoints to data collection.</span>
+        </li>
+        <li>
+          <strong>I lead from the bench</strong>
+          <span>Was the sole product developer through early prototypes, then recruited and managed a four-person engineering team.</span>
+        </li>
+        <li>
+          <strong>I make things work better</strong>
+          <span>Doubled assembly output and cut coating waste by 25% as a quality and manufacturing engineer.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="headstrait">
+  <div class="wrap">
+    <div class="company-head">
+      <h2>HeadStrait Labs</h2>
+      <span class="role">Cofounder &amp; Co-CEO · Apr 2023 – present</span>
+    </div>
+    <p class="intro">A sensor-integrated medical device for emergency medical transport. I led it end to end through five hardware generations, from concept to a pilot-ready system.</p>
+
+    <!-- Swap each placeholder for a photo (e.g. <img src="gen1.jpg" alt="First HeadStrait prototype">) and edit the short descriptions. -->
+    <ol class="gens">
+      <li>
+        <div class="photo-slot">Photo of generation 1</div>
+        <h4>Concept</h4>
+        <p>First proof that the idea could work.</p>
+      </li>
+      <li>
+        <div class="photo-slot">Photo of generation 2</div>
+        <h4>First build</h4>
+        <p>Mechanical design and fabrication, done solo.</p>
+      </li>
+      <li>
+        <div class="photo-slot">Photo of generation 3</div>
+        <h4>Sensors in</h4>
+        <p>Electronics integration and early validation.</p>
+      </li>
+      <li>
+        <div class="photo-slot">Photo of generation 4</div>
+        <h4>Clinical testing</h4>
+        <p>IRB-approved study with UPMC.</p>
+      </li>
+      <li>
+        <div class="photo-slot">Photo of generation 5</div>
+        <h4>Pilot-ready</h4>
+        <p>A system ready for the field, built with a team of four.</p>
+      </li>
+    </ol>
+
+    <div class="wins">
+      <div><strong>$700K+</strong><span>raised in funding</span></div>
+      <div><strong>5</strong><span>hardware generations, concept to pilot</span></div>
+      <div><strong>UPMC</strong><span>clinical study partner, publication in progress</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <h2>Experience</h2>
+        <div class="entry">
+          <h3>Michigan Critical Care Consultants (MC3)</h3>
+          <div class="meta">Quality / Manufacturing Engineer · Dexter, MI · May 2021 – Aug 2022</div>
+          <ul>
+            <li>Redesigned the coating station: 40% more capacity, automated plumbing, 25% less waste.</li>
+            <li>Doubled product assembly output with 5S and Kanban/Kaizen (FIFO).</li>
+            <li>Led the facility expansion layout to improve workflow and particulate control.</li>
+            <li>Managed cleanroom requalification, wrote the SOP, and trained the team.</li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:48px">Education</h2>
+        <div class="entry">
+          <h3>Carnegie Mellon University</h3>
+          <div class="meta">Pittsburgh, PA</div>
+          <ul>
+            <li>M.S. Biomedical Engineering, May 2024 · GPA 4.0</li>
+            <li>M.S. Engineering &amp; Technology Innovation Management, Dec 2023 · GPA 3.9</li>
+          </ul>
+        </div>
+        <div class="entry">
+          <h3>Michigan State University</h3>
+          <div class="meta">East Lansing, MI</div>
+          <ul>
+            <li>B.S. Biosystems Engineering, concentration in Biomedical Engineering, May 2021</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2>Programs &amp; fellowships</h2>
+        <ul class="programs">
+          <li><strong>Pathways Fellowship, CMU Robotics Institute</strong><span>Year-long fellowship delivering a fabricated MVP, with weekly mentorship from Dr. Howie Choset and robotics coursework in perception, motion planning, controls, and localization.</span></li>
+          <li><strong>Innovation Works Robotics Factory Accelerator</strong><span>One of five startups selected. Six months of shop access and commercialization mentorship; showcased at Robotics &amp; AI Discovery Day 2024.</span></li>
+          <li><strong>Prototype PGH Makers to Manufacturers</strong><span>Six-month cohort in CNC, lathe, laser cutting, 3D printing, CAD, and MIG/TIG welding.</span></li>
+          <li><strong>Science Venture Studio EMPOWER Accelerator</strong><span>16-week program for women STEM founders on grant writing and non-dilutive funding, 2023.</span></li>
+        </ul>
+
+        <h3 style="margin-top:40px">Tools I use</h3>
+        <ul class="tools">
+          <li>SolidWorks</li><li>Autodesk Fusion</li><li>Python</li><li>C++</li><li>MATLAB</li>
+          <li>SQL</li><li>R Studio</li><li>Git</li><li>Figma</li><li>Webflow</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="recognition">
+  <div class="wrap">
+    <h2>Recognition</h2>
+    <p class="intro">Competitions, showcases, and the occasional stage.</p>
+    <dl class="years">
+      <dt>2026</dt>
+      <dd><ul>
+        <li>First Place, Duquesne New Venture Competition</li>
+        <li>U.S. Representative, Greater Zurich Area HealthTech Roadshow</li>
+        <li>Pittsburgh Business Times Startup to Watch</li>
+        <li>Semi-Finalist, AI Forge Draft Week Showcase</li>
+      </ul></dd>
+      <dt>2025</dt>
+      <dd><ul>
+        <li>Technical.ly RealList: Most Promising Early-Stage Startup</li>
+        <li>Finalist, BNY UpPrize</li>
+        <li>Finalist, EXPLORE at Pittsburgh Tech Week</li>
+        <li>Finalist, PghLab</li>
+      </ul></dd>
+      <dt>Earlier</dt>
+      <dd><ul>
+        <li>First Place, Carnegie Mellon Medical Devices Pitch Competition (2022)</li>
+        <li>Featured speaker, Allegheny Harvard Yale Princeton Club</li>
+      </ul></dd>
+    </dl>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>Whether it's a role, a collaboration, or a medical device problem you're stuck on, I'd love to hear from you.</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:marysquire2021@gmail.com">marysquire2021@gmail.com</a>
+      <a class="btn" href="https://linkedin.com/in/maryesquire" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap"><p>© 2026 Mary E. Squire · Pittsburgh, PA</p></div>
+</footer>
+
+</body>
+</html>
