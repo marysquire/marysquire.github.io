@@ -16,7 +16,7 @@
     --ink: #FFFFFF;
     --muted: #A8A39A;
     --line: #36332E;
-    --gold: #D4A857;
+    --gold: #8DB4D8;
     --f: "Poppins", "Helvetica Neue", Arial, sans-serif;
     --script: "Dancing Script", cursive;
   }
@@ -43,7 +43,7 @@
   .hero { position: relative; min-height: 700px; padding-top: 88px; display: flex; align-items: center; overflow: hidden; }
   .watermark { position: absolute; left: 22%; top: 52%; transform: translateY(-50%) rotate(-8deg); font: 700 clamp(9rem, 22vw, 19rem)/1 var(--script); color: rgba(255,255,255,.045); pointer-events: none; white-space: nowrap; }
   .hero .photo { position: absolute; right: 3%; bottom: 0; width: 44%; height: calc(100% - 100px); display: flex; align-items: flex-end; justify-content: center; }
-  .hero .photo::before { content: ""; position: absolute; left: 12%; right: 12%; bottom: 8%; height: 70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(212,168,87,.22), rgba(212,168,87,0)); }
+  .hero .photo::before { content: ""; position: absolute; left: 12%; right: 12%; bottom: 8%; height: 70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(141,180,216,.22), rgba(141,180,216,0)); }
   .hero .photo img { position: relative; height: 100%; width: auto; max-width: none; object-fit: contain; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, #000 82%, transparent 100%); }
   .hero .copy { position: relative; width: 56%; padding: 60px 40px 80px 0; }
   .social { display: flex; gap: 12px; margin-bottom: 30px; list-style: none; padding: 0; }
@@ -91,12 +91,6 @@
   .readme dd { margin: 0; font: 500 1.15rem/1.45 var(--f); }
   .readme dd small { display: block; font: 400 0.95rem/1.6 var(--f); color: var(--muted); margin-top: 4px; }
 
-  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  .tile { margin: 0; text-align: center; }
-  .tile .ph { aspect-ratio: 3 / 4; border-radius: 18px; }
-  .tile figcaption { padding-top: 16px; }
-  .tile figcaption b { display: block; font-weight: 600; font-size: 1.05rem; }
-  .tile figcaption span { color: var(--muted); font-size: 0.92rem; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
   .two-col .label, .two-col h2 { text-align: left; }
@@ -104,6 +98,8 @@
   .entry h3 { font: 600 1.02rem/1.4 var(--f); margin: 0; }
   .entry p { margin: 2px 0 0; color: var(--muted); font-size: 0.93rem; }
   .stage .ph { aspect-ratio: 4 / 3; margin-bottom: 24px; border-radius: 18px; }
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: -12px 0 24px; }
+  .strip .ph { aspect-ratio: 4 / 3; border-radius: 12px; margin: 0; }
   .wins { list-style: none; margin: 0; padding: 0; }
   .wins li { display: flex; gap: 18px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
   .wins .y { color: var(--gold); min-width: 3em; font-weight: 600; }
@@ -133,19 +129,299 @@
   @media (max-width: 560px) { .press { grid-template-columns: 1fr; } }
   @media (prefers-reduced-motion: reduce) { .press a:hover { transform: none; } }
   @media (max-width: 900px) {
+    .bg-sketch { object-position: 30% 50%; }
     .hero { flex-direction: column; align-items: stretch; min-height: 0; }
     .hero .photo { position: relative; top: 0; right: 0; width: 100%; height: 440px; order: -1; margin-top: 0; }
     .hero .copy { width: 100%; padding: 24px 0 64px; }
     .watermark { left: -5%; top: 30%; }
     .gens { grid-template-columns: repeat(3, 1fr); }
     .numbers { grid-template-columns: 1fr 1fr; }
-    .gallery { grid-template-columns: 1fr 1fr; }
     .two-col { grid-template-columns: 1fr; }
     .readme div { grid-template-columns: 1fr; gap: 4px; }
     section { padding: 80px 0; }
   }
   @media (max-width: 520px) { .gens { grid-template-columns: 1fr 1fr; } .btn.ghost { margin: 10px 0 0; } }
   @media (prefers-reduced-motion: reduce) { .typed { animation: none; } html { scroll-behavior: auto; } }
+
+  .shop { margin-top: 56px; }
+  .shop-title { font-weight: 600; font-size: 1.15rem; margin: 0 0 18px; }
+  .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .shop-grid figure { margin: 0; }
+  .clip { aspect-ratio: 9 / 14; border-radius: 16px; overflow: hidden; background: var(--card); }
+  .clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shop-grid figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+  @media (max-width: 900px) { .shop-grid { grid-template-columns: 1fr 1fr; } }
+  /* Unplugged: one fanned photo stack per activity */
+  .behind { margin-top: 64px; }
+  .sub-title { font-weight: 600; font-size: 1.25rem; margin: 0 0 28px; text-align: center; }
+  .gallery.g3 { grid-template-columns: repeat(3, 1fr); gap: 20px 14px; max-width: none; margin: 0 0 32px; }
+  .gallery.g3 .tile-cap { margin-top: 14px; } .gallery.g3 .tile-cap b { font-size: 0.95rem; } .gallery.g3 .tile-cap span { font-size: 0.82rem; }
+  .gallery.g2 { grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 420px; margin: 36px 0 0; }
+  .gallery.g2 .tile-cap b { font-size: 0.95rem; } .gallery.g2 .tile-cap span { font-size: 0.85rem; }
+  .gallery.g1 { grid-template-columns: minmax(0, 300px); justify-content: center; margin: 0 auto 56px; }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 36px; max-width: 980px; margin: 0 auto; }
+  .tile { text-align: center; }
+  .stack { position: relative; aspect-ratio: 3 / 4; margin: 0 6px; touch-action: pan-y; user-select: none; -webkit-user-select: none; outline: none; }
+  .stack:focus-visible { outline: 2px solid var(--gold); outline-offset: 10px; border-radius: 18px; }
+  .card { position: absolute; inset: 0; margin: 0; border-radius: 18px; overflow: hidden; background: var(--card); box-shadow: 0 14px 30px rgba(0,0,0,.45); transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .35s; }
+  .stack.multi .card { cursor: grab; }
+  .card.dragging { transition: none; cursor: grabbing; }
+  .card img, .card video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; display: block; }
+  .tile-cap { margin: 22px 0 0; }
+  .tile-cap b { display: block; font-weight: 600; font-size: 1.05rem; }
+  .tile-cap span { display: block; color: var(--muted); font-size: 0.92rem; }
+  .tile-cap .count { color: var(--gold); font-size: 0.8rem; font-weight: 500; margin-top: 4px; min-height: 1.2em; }
+  @media (max-width: 900px) { .gallery { grid-template-columns: 1fr 1fr; gap: 36px 20px; } }
+  @media (max-width: 520px) { .gallery { gap: 32px 16px; } }
+  @media (max-width: 900px) { .gallery.g3 { grid-template-columns: repeat(3, 1fr); gap: 16px 10px; } .gallery.g2 { grid-template-columns: 1fr 1fr; } .gallery.g1 { grid-template-columns: minmax(0, 260px); } }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+  .phone-wrap { position: relative; }
+  .phone-btn { width: 42px; height: 42px; border: 1.5px solid var(--gold); border-radius: 50%; display: grid; place-items: center; background: transparent; cursor: pointer; padding: 0; }
+  .phone-btn:hover, .phone-btn[aria-expanded="true"] { background: var(--gold); }
+  .phone-btn:hover svg, .phone-btn[aria-expanded="true"] svg { fill: #161514; }
+  .phone-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .phone-pop { position: absolute; left: 0; top: 52px; z-index: 20; display: flex; align-items: center; gap: 10px; white-space: nowrap; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px 10px 16px; box-shadow: 0 12px 30px rgba(0,0,0,.4); font-weight: 600; }
+  .phone-pop[hidden] { display: none; }
+  .phone-pop button, .social .phone-pop a { font: 500 0.85rem/1 var(--f); padding: 7px 12px; border-radius: 999px; border: 1px solid var(--gold); background: transparent; color: var(--ink); cursor: pointer; text-decoration: none; }
+  .phone-pop button:hover, .social .phone-pop a:hover { background: var(--gold); color: #161514; }
+  .social .call-num { display: none; width: auto; height: auto; }
+  @media (pointer: coarse) { .social .call-num { display: inline-block; } }
+  button.btn { font-family: var(--f); cursor: pointer; }
+  .facts { margin-bottom: 14px; }
+  .into { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; padding: 0; margin: 0 0 32px; }
+  .into li { font-size: 0.85rem; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); }
+  .into .into-label { border: 0; padding-left: 0; color: var(--muted); }
+.bg-sketch{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.14;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 92%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 92%,transparent 100%)}
+  .behind { position: relative; padding: 56px 0 24px; }
+  .behind::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%); background: url("sketch-behind.png") center / cover no-repeat; opacity: .13; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%); }
+  .behind > * { position: relative; }
+
+  #work { position: relative; }
+  #work::before { content: ""; position: absolute; left: 0; right: 0; top: -140px; height: 640px; background: url("sketch-strip.png") center top / cover no-repeat; opacity: .14; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 55%, transparent 100%); }
+  #work > .wrap { position: relative; }
+  .hero { z-index: 1; }
+  .hero .photo { z-index: 2; }
+  p.into { display: block; margin: 0 0 32px; font-size: 0.98rem; color: var(--ink); }
+  p.into .into-label { color: var(--gold); font-weight: 600; margin-right: 6px; }
+  p.into i { font-style: normal; color: var(--muted); margin: 0 6px; }
+
+  .toolkit { margin-top: 72px; }
+  .tools-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
+  .tool { margin: 0; }
+  .tool-media { aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,.03); border: 1px solid var(--line); display: grid; place-items: center; }
+  .tool-media img, .tool-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tool-media img.sk { object-fit: contain; width: 82%; height: 82%; opacity: .75; }
+  .tool h4 { font: 600 1.02rem/1.3 var(--f); margin: 14px 0 4px; }
+  .tool p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  @media (max-width: 900px) { .tools-grid { grid-template-columns: 1fr 1fr; gap: 26px 16px; } }
+
+  .path { grid-template-columns: 1.25fr 1fr; align-items: start; }
+  .path-sub { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin: 28px 0 4px; }
+  .entry .when { display: block; color: var(--muted); font-size: 0.82rem; margin-bottom: 2px; }
+  .path-side { padding-top: 96px; }
+  .path-side .gallery.g2 { max-width: none; margin: 0; }
+  .gallery.g3.wide { max-width: 900px; margin: 0 auto 56px; gap: 32px 28px; }
+  .gallery.g3.wide .tile-cap b { font-size: 1.05rem; } .gallery.g3.wide .tile-cap span { font-size: 0.9rem; }
+  .wins.two { columns: 2; column-gap: 56px; max-width: 1000px; margin: 0 auto; }
+  .wins.two li { break-inside: avoid; }
+  @media (max-width: 900px) { .path-side { padding-top: 0; } .wins.two { columns: 1; } }
+
+  .partners { margin-top: 64px; }
+  .partner-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .partner-list li { border-top: 2px solid var(--gold); padding: 18px 4px 0; }
+  .partner-list .p-role { color: var(--gold); font-size: 0.78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .partner-list h4 { font: 600 1.15rem/1.3 var(--f); margin: 6px 0 6px; }
+  .partner-list p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+  .partner-list li.p-ph { border-top-style: dashed; opacity: .55; }
+  @media (max-width: 900px) { .partner-list { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .partner-list { grid-template-columns: 1fr; } }
+  .gens .ph { aspect-ratio: 4 / 5; background: #232428; }
+
+  .tech { margin-top: 64px; }
+  .tech-grid { display: grid; grid-template-columns: 0.62fr 0.8fr 1.3fr; gap: 28px; align-items: start; }
+  .tech-media.phone { aspect-ratio: 9 / 16; }
+  .tech-media.phone video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tech figure { margin: 0; }
+  .tech-media { border-radius: 16px; overflow: hidden; background: #232428; }
+  .tech-media img { width: 100%; display: block; }
+  .tech figcaption { color: var(--muted); font-size: 0.92rem; line-height: 1.55; margin: 12px 0 0; }
+  .tech figcaption b { display: block; color: var(--ink); font-weight: 600; font-size: 1.02rem; margin-bottom: 2px; }
+  .tech-sw figcaption { margin-bottom: 28px; }
+  .browser { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #232428; }
+  .browser .dots { display: flex; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  .browser .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3A3B40; }
+  .browser .dots i:first-child { background: var(--gold); }
+  .browser video { width: 100%; display: block; aspect-ratio: 3024 / 1718; object-fit: cover; }
+  @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr 1fr; } .tech-sw { grid-column: 1 / -1; } }
+  @media (max-width: 520px) { .tech-grid { grid-template-columns: 1fr; } .tech-media.phone { max-width: 300px; margin: 0 auto; } }
+
+  .tech-row { display: flex; gap: 28px; align-items: flex-start; }
+  .tech-row figure { margin: 0; flex-basis: 0; flex-shrink: 1; min-width: 0; }
+  .tm { border-radius: 16px; overflow: hidden; background: #232428; position: relative; }
+  .tm > img, .tm > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tm.browser { border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; }
+  .tm.browser .dots { position: relative; z-index: 1; display: flex; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); background: #232428; flex: none; }
+  .tm.browser .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3A3B40; }
+  .tm.browser .dots i:first-child { background: var(--gold); }
+  .tm.browser > video { position: relative; inset: auto; flex: 1; height: auto; min-height: 0; object-position: left top; }
+  .tech-row figcaption { color: var(--muted); font-size: 0.9rem; line-height: 1.55; margin-top: 12px; }
+  .tech-row figcaption b { display: block; color: var(--ink); font-weight: 600; font-size: 1.02rem; margin-bottom: 2px; }
+  @media (max-width: 900px) { .tech-row { flex-wrap: wrap; } .tech-row figure:nth-child(1), .tech-row figure:nth-child(2) { flex-basis: 40%; } .tech-row figure:nth-child(3) { flex-basis: 100%; } }
+  @media (max-width: 520px) { .tech-row figure { flex-basis: 100% !important; } .tech-row figure:first-child .tm { max-width: 280px; margin: 0 auto; } }
+
+  .gen-btn { all: unset; display: block; cursor: pointer; border-radius: 16px; }
+  .gen-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .gens li { transition: transform .2s; } .gens li:hover { transform: translateY(-3px); }
+  .gen-btn .more { display: inline-block; margin: 10px 16px 0; color: var(--gold); font-size: 0.85rem; font-weight: 500; }
+  .gen-btn .more::after { content: " →"; }
+  #gen-dialog { width: min(1040px, 94vw); max-height: 90vh; padding: 0; border: 1px solid var(--line); border-radius: 18px; background: var(--bg); color: var(--ink); overflow: hidden; }
+  #gen-dialog::backdrop { background: rgba(10,10,12,.75); backdrop-filter: blur(4px); }
+  .gd-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+  .gd-step { color: var(--muted); font-size: 0.85rem; }
+  .gd-nav { display: flex; gap: 8px; }
+  .gd-nav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 1.05rem; cursor: pointer; }
+  .gd-nav button:hover { border-color: var(--gold); }
+  .gd-body { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; padding: 24px; max-height: calc(90vh - 66px); overflow: auto; }
+  .gd-media { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .gd-media figure { margin: 0; flex: 0 0 82%; scroll-snap-align: start; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #232428; }
+  .gd-media img, .gd-media video { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .gd-kicker { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 4px 0 6px; }
+  .gd-text h3 { font: 700 1.8rem/1.15 var(--f); margin: 0 0 10px; }
+  .gd-intro { color: var(--ink); margin: 0 0 16px; }
+  .gd-text ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .gd-text li { margin-bottom: 8px; line-height: 1.55; }
+  .gd-hint { color: var(--muted); font-size: 0.8rem; margin-top: 18px; }
+  @media (max-width: 760px) { .gd-body { grid-template-columns: 1fr; } }
+  .gens li { display: flex; } .gen-btn { display: flex; flex-direction: column; flex: 1; } .gen-btn .more { margin-top: auto; padding-top: 10px; }
+  .gd-media figure.wide { flex-basis: 100%; aspect-ratio: auto; height: auto; align-self: center; }
+  .gd-media figure.wide img { height: auto; }
+
+  .credit { display: block; color: var(--muted); opacity: .75; font-size: 0.72rem; font-style: italic; margin-top: 6px; }
+  .gens .credit { padding: 0 16px; }
+  .gd-credit { color: var(--muted); opacity: .8; font-size: 0.78rem; font-style: italic; margin: 14px 0 0; }
+
+  .site-link { text-align: center; margin: -36px 0 48px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .site-link a { color: var(--gold); font-weight: 600; text-decoration: none; border: 1.5px solid var(--gold); border-radius: 999px; padding: 8px 16px; font-size: 0.92rem; }
+  .site-link a:hover { background: var(--gold); color: #161514; }
+  .site-note { color: var(--muted); font-size: 0.85rem; }
+  a.plain { color: inherit; text-decoration: none; } a.plain:hover { color: var(--gold); }
+
+  #skills .toolkit { margin-top: 0; }
+  #skills .manual { margin-top: 80px; }
+  .behind .gallery, #life .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+  .behind .gallery > .tile, #life .gallery > .tile { flex: 0 0 calc((100% - 72px) / 3); }
+  @media (max-width: 900px) { .behind .gallery > .tile, #life .gallery > .tile { flex-basis: calc((100% - 20px) / 2); } }
+  .tool-media { position: relative; }
+  .tool-media > img:not(.sk), .tool-media > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .gd-media figure.cad-ph { display: grid; place-items: center; border: 1.5px dashed var(--line); background: transparent; }
+  .cad-ph span { text-align: center; color: var(--muted); font-weight: 600; }
+  .cad-ph small { display: block; font-weight: 400; font-size: 0.8rem; opacity: .7; margin-top: 4px; }
+
+  .path2 { max-width: 1040px; }
+  .path2 .label, .path2 h2 { text-align: left; }
+  .path2 .entry p { margin: 2px 0 0; }
+  .entry.has-media { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; padding: 28px 0; }
+  .e-media { margin: 0; }
+  .e-media img { width: 100%; height: auto; border-radius: 14px; display: block; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+  .e-media.portrait { justify-self: center; width: 72%; }
+  .e-media figcaption { color: var(--muted); font-size: 0.78rem; margin-top: 6px; }
+  @media (max-width: 640px) { .entry.has-media { grid-template-columns: 1fr; gap: 14px; } .e-media.portrait { width: 80%; } }
+
+  .mini-gallery { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 900px; }
+  .mini-gallery figure { margin: 0; }
+  .mini-gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; display: block; box-shadow: 0 12px 26px rgba(0,0,0,.4); }
+  .mini-gallery figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 8px; text-align: center; }
+  @media (max-width: 600px) { .mini-gallery { grid-template-columns: 1fr 1fr; gap: 14px; } }
+  .feature-shot { margin: 40px auto 0; max-width: 900px; }
+  .feature-shot img { width: 100%; height: auto; border-radius: 16px; display: block; box-shadow: 0 14px 30px rgba(0,0,0,.45); }
+  .feature-shot figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 8px; text-align: center; }
+  .mini-gallery { grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 860px; }
+  .mini-gallery li.wide { grid-column: span 2; }
+  .mini-gallery img { aspect-ratio: auto; height: 250px; }
+  .mini-gallery figcaption { font-size: 0.8rem; }
+  @media (max-width: 760px) { .mini-gallery { grid-template-columns: 1fr 1fr; } .mini-gallery img { height: 200px; } }
+  @media (max-width: 520px) { .mini-gallery img { height: 170px; } }
+  .mini-gallery { max-width: none; gap: 20px; }
+  .mini-gallery img { height: 300px; }
+  .feature-shot { max-width: none; }
+  @media (max-width: 760px) { .mini-gallery img { height: 200px; } }
+  @media (max-width: 520px) { .mini-gallery img { height: 170px; } }
+
+  .path2 { max-width: 1120px; }
+  .path-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: start; }
+  .path-collage { display: flex; flex-direction: column; gap: 0; padding-top: 70px; }
+  .pc { margin: 0; }
+  .pc img { width: 100%; height: auto; display: block; border-radius: 14px; box-shadow: 0 16px 34px rgba(0,0,0,.45); }
+  .pc figcaption { color: var(--muted); font-size: 0.78rem; margin-top: 6px; }
+  .pc1 { width: 82%; align-self: flex-end; }
+  .pc2 { width: 74%; align-self: flex-start; margin-top: 18px; }
+  .pc3 { width: 86%; align-self: flex-end; margin-top: 18px; }
+  @media (max-width: 860px) { .path-grid { grid-template-columns: 1fr; gap: 24px; } .path-collage { padding-top: 0; } }
+
+  .path-grid { align-items: stretch; }
+  .path-collage { padding-top: 0; justify-content: space-between; gap: 18px; margin-top: 30px; }
+  .path-collage .pc { margin-top: 0; }
+  .pc1 { width: 80%; } .pc2 { width: 70%; } .pc3 { width: 84%; }
+  @media (max-width: 860px) {
+    .path-grid { display: block; }
+    .path-collage { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .path-collage .pc { width: auto; align-self: auto; }
+    .pc1 { grid-column: 1 / -1; }
+    .pc2 img, .pc3 img { aspect-ratio: 4 / 3; object-fit: cover; }
+  }
+
+  .path-collage { margin-top: 0; justify-content: stretch; gap: 16px; height: 100%; }
+  .path-collage .pc { width: 100% !important; align-self: stretch !important; flex: 1 1 0; min-height: 0; }
+  .path-collage .pc img { width: 100%; height: 100%; object-fit: cover; }
+  .pc1 img { object-position: 50% 35%; } .pc2 img { object-position: 30% 0%; } .pc3 img { object-position: 50% 55%; }
+  .path-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+  @media (max-width: 860px) {
+    .path-collage { height: auto; }
+    .path-collage .pc { flex: none; }
+    .path-collage .pc img { height: auto; aspect-ratio: 4 / 3; }
+    .pc1 img { aspect-ratio: 3 / 2; }
+  }
+  .acq { color: var(--muted); font-weight: 400; font-size: 0.85rem; }
+  .tools-grid .tool.tall { grid-row: span 2; display: flex; flex-direction: column; }
+  .tools-grid .tool.tall .tool-media { aspect-ratio: auto; flex: 1; min-height: 0; }
+  .tools-grid .tool.tall .tool-media img { object-position: 50% 40%; }
+  @media (max-width: 900px) { .tools-grid .tool.tall { grid-row: span 1; } .tools-grid .tool.tall .tool-media { aspect-ratio: 3 / 4; flex: none; } }
+  .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 28px 24px; }
+  @media (max-width: 900px) { .tools-grid { grid-template-columns: 1fr 1fr; } }
+  .tool-media.tool-ph { border: 1.5px dashed var(--line); background: transparent; }
+  .tool-ph span { text-align: center; color: var(--muted); font-weight: 600; }
+  .tool-ph small { display: block; font-weight: 400; font-size: 0.8rem; opacity: .7; margin-top: 4px; }
+  .path-grid { grid-template-columns: 2fr 1fr; gap: 56px; }
+  .path2 .entry h3 { font-size: 1.3rem; }
+  .path2 .entry p { font-size: 1.05rem; line-height: 1.6; }
+  .path2 .entry .when { font-size: 0.9rem; }
+  .path2 .path-sub { font-size: 0.9rem; }
+  .path2 .acq { font-size: 0.95rem; }
+  @media (max-width: 860px) { .path2 .entry h3 { font-size: 1.15rem; } .path2 .entry p { font-size: 0.98rem; } }
+  .card.land { background: #1b1b1d; }
+  .card.land img, .card.land video { object-fit: contain; position: relative; }
+  .card.land img.land-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(18px) brightness(.55); transform: scale(1.15); }
+
+  .bg-sketch-r { position: absolute; right: 0; top: 0; height: 100%; width: 52%; object-fit: cover; object-position: right center; opacity: .12; pointer-events: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30%); mask-image: linear-gradient(90deg, transparent 0, #000 30%); }
+  .site-inline { color: var(--gold); white-space: nowrap; text-decoration: none; border-bottom: 1px solid currentColor; }
+  .site-inline:hover { opacity: .8; }
+  .gd-text li b { color: var(--ink); font-weight: 600; }
+  .proj { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; text-align: left; }
+  .proj-text p { color: var(--muted); margin: 0 0 14px; line-height: 1.65; }
+  .proj-list { list-style: none; margin: 18px 0; padding: 0; }
+  .proj-list li { padding: 12px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+  .proj-list b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  .proj-goal { color: var(--ink) !important; font-weight: 500; }
+  .proj-next { font-size: 0.9rem; }
+  .proj-next b { color: var(--gold); font-weight: 600; }
+  .proj-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .proj-shots figure { margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #f4efe8; }
+  .proj-shots img { width: 100%; height: auto; display: block; }
+  .proj-shots figure:first-child { grid-column: 1 / -1; }
+  .numbers span { line-height: 1.35; }
+  @media (max-width: 860px) { .proj { grid-template-columns: 1fr; gap: 28px; } .bg-sketch-r { width: 100%; opacity: .08; } }
 </style>
 </head>
 <body>
@@ -154,96 +430,286 @@
   <div class="wrap">
     <a class="logo" href="#top">mary<i>.</i>squire</a>
     <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#readme">How I work</a></li>
-      <li><a href="#life">Off the clock</a></li>
-      <li><a href="#press">Press</a></li>
+      <li><a href="#work">Latest build</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#background">Background</a></li>
+      <li><a href="#wins">Wins</a></li>
+      <li><a href="#life">After hours</a></li>
+      <li><a href="#skills">Toolkit</a></li>
+      <li><a href="#press">Press</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="watermark" aria-hidden="true">Mary</div>
-  <div class="photo"><img src="headshot-cutout.png" alt="Mary Squire smiling with arms crossed in a workshop"></div>
+  <img class="bg-sketch" src="sketch-hero.png" alt="" aria-hidden="true">
+  <img class="bg-sketch-r" src="sketch-behind.png" alt="" aria-hidden="true">
+  <div class="photo"><img src="headshot-soft.png" alt="Mary Squire smiling with arms crossed in a workshop"></div>
   <div class="wrap" style="width:100%">
     <div class="copy">
       <ul class="social">
         <li><a href="https://linkedin.com/in/maryesquire" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></li>
         <li><a href="mailto:marysquire2021@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.4 7H19.6zM4 9.1V17h16V9.1l-8 5.4z"/></svg></a></li>
+        <li class="phone-wrap"><button type="button" class="phone-btn" aria-expanded="false" aria-controls="phone-pop" aria-label="Show phone number"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></button>
+          <div class="phone-pop" id="phone-pop" hidden><span>734-474-3286</span><button type="button" class="copy-num" data-num="734-474-3286">Copy</button><a class="call-num" href="tel:+17344743286">Call</a></div></li>
       </ul>
       <p class="hi">Hi, I'm Mary Squire.</p>
       <h1>Mary is<br><span class="typed" id="typed">an engineer</span></h1>
       <div class="rule"></div>
       <p class="facts">
-        <span><b>5</b> hardware generations</span>
+        <span><b>3</b> engineering degrees</span>
+        <span><b>1</b> patent pending</span>
         <span><b>$700K+</b> raised</span>
-        <span><b>2</b> master's degrees</span>
-        <span><b>1</b> monitor, max</span>
       </p>
-      <a class="btn ghost" href="#work" style="margin-left:0;margin-right:10px">See my work</a><a class="btn" href="mailto:marysquire2021@gmail.com" style="margin-left:0">Get in touch</a>
+      <p class="into"><span class="into-label">Into</span> Robotics <i>·</i> Automation <i>·</i> Sensors <i>·</i> Mechanical design</p>
+      <a class="btn ghost" href="#work" style="margin-left:0;margin-right:10px">See my latest build</a><a class="btn" href="mailto:marysquire2021@gmail.com" style="margin-left:0">Get in touch</a>
     </div>
   </div>
 </header>
 
 <section id="work">
   <div class="wrap">
-    <p class="label">The day job</p>
+    <p class="label">Latest build</p>
     <h2>HeadStrait Labs</h2>
-    <p class="lede">Cofounder and Co-CEO. I took a sensor-integrated device for emergency medical transport from a sketch to a pilot-ready system.</p>
+    <p class="lede">Cofounder and Co-CEO. I took a sensor-integrated medical device for emergency medical transport from a sketch to FDA registration and commercial sale. <a class="site-inline" href="https://www.headstraitlabs.com/" target="_blank" rel="noopener">headstraitlabs.com&nbsp;↗</a></p>
     <!-- Prototype photos load automatically from photos/gen1.jpg through photos/gen5.jpg -->
     <ol class="gens">
-      <li><div class="ph" data-label="Gen 1"><img src="photos/gen1.jpg" alt="Generation 1 prototype" onerror="this.remove()"></div><span class="n">01</span><h4>Concept</h4><p>Proof the idea could work.</p></li>
-      <li><div class="ph" data-label="Gen 2"><img src="photos/gen2.jpg" alt="Generation 2 prototype" onerror="this.remove()"></div><span class="n">02</span><h4>First build</h4><p>Designed and built solo.</p></li>
-      <li><div class="ph" data-label="Gen 3"><img src="photos/gen3.jpg" alt="Generation 3 prototype" onerror="this.remove()"></div><span class="n">03</span><h4>Sensors in</h4><p>Electronics and validation.</p></li>
-      <li><div class="ph" data-label="Gen 4"><img src="photos/gen4.jpg" alt="Generation 4 prototype" onerror="this.remove()"></div><span class="n">04</span><h4>Clinical testing</h4><p>Study with UPMC.</p></li>
-      <li><div class="ph" data-label="Gen 5"><img src="photos/gen5.jpg" alt="Generation 5 prototype" onerror="this.remove()"></div><span class="n">05</span><h4>Pilot-ready</h4><p>Built with a team of four.</p></li>
+      <li><button type="button" class="gen-btn" data-gen="1" aria-label="More about step 1"><div class="ph" data-label="Gen 1"><img src="photos/hsl-gen1.jpg" alt="The TRIclamp prototype holding a foam mannequin head" loading="lazy" onerror="this.remove()"></div><span class="n">01</span><h4>TRIclamp concept</h4><p>First prototype, designed for neurosurgery as a new approach to rigid skull clamps.</p><span class="more">See the details</span></button></li>
+      <li><button type="button" class="gen-btn" data-gen="2" aria-label="More about step 2"><div class="ph" data-label="Gen 2"><img src="photos/hsl-gen2.jpg" alt="Black vinyl prototype with a breadboard and sensors attached" loading="lazy" onerror="this.remove()"></div><span class="n">02</span><h4>Semi-rigid &amp; sensor-integrated</h4><p>First field-oriented prototype with a lightweight semi-rigid structure, motion tracking, and contact sensing.</p><span class="more">See the details</span></button></li>
+      <li><button type="button" class="gen-btn" data-gen="3" aria-label="More about step 3"><div class="ph" data-label="Gen 3"><img src="photos/hsl-gen3.jpg" alt="White molded immobilization shell with a gray grip pad and straps" loading="lazy" onerror="this.remove()"></div><span class="n">03</span><h4>Molded splint</h4><p>The first rigid, contoured splint for structured head and torso support.</p><span class="credit">with Nottingham Spirk</span><span class="more">See the details</span></button></li>
+      <li><button type="button" class="gen-btn" data-gen="4" aria-label="More about step 4"><div class="ph" data-label="Gen 4"><img src="photos/hsl-gen4.jpg" alt="Two white CNC-cut boards with red straps on a cutting mat" loading="lazy" onerror="this.remove()"></div><span class="n">04</span><h4>Rotating-rail design</h4><p>Flat components with adjustable sizing, wireless sensors, and a more adaptable fit.</p><span class="more">See the details</span></button></li>
+      <li><button type="button" class="gen-btn" data-gen="5" aria-label="More about step 5"><div class="ph" data-label="Gen 5"><img src="photos/hsl-gen5.jpg" alt="Final white HeadStrait device with a red head strap and fold lines" loading="lazy" onerror="this.remove()"></div><span class="n">05</span><h4>FDA-registered &amp; market-ready</h4><p>From prototype to commercial product: more adjustable, faster to deploy, and scalable to manufacture.</p><span class="credit">with David Weckerly</span><span class="more">See the details</span></button></li>
     </ol>
+    <div class="tech">
+      <p class="sub-title">The EVAC-1 with SMARTmotion</p>
+      <div class="tech-row">
+        <figure style="flex-grow:.5625">
+          <div class="tm" style="aspect-ratio:9/16"><video src="clips/splint-demo.mp4" poster="clips/splint-demo.jpg" muted loop playsinline preload="metadata" aria-label="Stop-motion video of the HeadStrait splint unfolding and folding flat"></video></div>
+          <figcaption><b>The splint</b>An adjustable head and neck immobilization device designed for rapid application, secure positioning, and patient comfort. Folds flat for storage and transport, fits patients of all sizes in one device, and leaves the airway accessible compared to traditional cervical collars.</figcaption>
+        </figure>
+        <figure style="flex-grow:.9367">
+          <div class="tm" style="aspect-ratio:1124/1200"><img src="photos/sensors.jpg" alt="Six hand-soldered sensor boards with ESP32 microcontrollers and IMU breakouts" loading="lazy"></div>
+          <figcaption><b>The sensors</b>Two removable, wireless motion sensors positioned at the head and torso. ESP32-based electronics with 6-axis IMUs capture relative head movement and record transport data.<span class="credit">In collaboration with Zoe White</span></figcaption>
+        </figure>
+        <figure style="flex-grow:1.62">
+          <div class="tm browser" style="aspect-ratio:1.62"><span class="dots"><i></i><i></i><i></i></span><video src="clips/dashboard.mp4" poster="clips/dashboard.jpg" muted loop playsinline preload="metadata" aria-label="Screen recording of the EVAC-1 Console: a transport's stability score and 3D head position, then session comparisons and team analytics"></video></div>
+          <figcaption><b>The analytics</b>The SMARTmotion dashboard turns motion data into actionable transport insights. It visualizes head movement in 3D, identifies motion threshold exceedances, and compares sessions to support training and quality improvement.<span class="credit">In collaboration with Akshat Kumar</span></figcaption>
+        </figure>
+      </div>
+    </div>
     <div class="numbers">
-      <div><strong>$700K+</strong><span>Raised</span></div>
-      <div><strong>5</strong><span>Hardware generations</span></div>
-      <div><strong>4</strong><span>Engineers recruited</span></div>
-      <div><strong>UPMC</strong><span>Clinical study partner</span></div>
+      <div><strong>$700K+</strong><span>Funding raised</span></div>
+      <div><strong>2</strong><span>Sales contracts secured</span></div>
+      <div><strong>150+</strong><span>Customer discovery interviews</span></div>
+      <div><strong>3</strong><span>Hospitals engaged in pilots</span></div>
+    </div>
+    <div class="partners">
+      <p class="sub-title">Partners &amp; collaborators</p>
+      <!-- To add a partner: copy one <li>, update the name, the role line, and the description. Remove class="p-ph" once it's real. -->
+      <ul class="partner-list">
+        <li><span class="p-role">Clinical field testing</span><h4>AHN LifeFlight</h4><p>Collaborated with critical care transport professionals to evaluate EVAC-1 usability, patient securement, and deployment workflows.</p></li>
+        <li><span class="p-role">Athletic medicine</span><h4>Oklahoma State University Athletics</h4><p>Collaborated with athletic training staff, incorporating athlete measurements into EVAC-1 design and exploring applications for sideline injury management.</p></li>
+        <li><span class="p-role">Clinical research</span><h4>UPMC</h4><p>Secured funding and led an IRB-approved clinical study evaluating EVAC-1, including study design, protocol development, and data collection.</p></li>
+        <li><span class="p-role">Collegiate EMS</span><h4>Carnegie Mellon University EMS</h4><p>Secured an early device sale and gathered EMS provider feedback to inform EVAC-1 usability and field deployment.</p></li>
+      </ul>
+    </div>
+    <div class="behind">
+      <p class="sub-title">Behind the build</p>
+      <ul class="mini-gallery">
+        <li><figure><img src="photos/test-commute.jpg" alt="Mary taking a selfie while carrying the device and parts" loading="lazy" style="object-position:50% 30%"><figcaption>Taking the prototype for a walk.</figcaption></figure></li>
+        <li class="wide"><figure><img src="photos/world-team.jpg" alt="Four women at the HeadStrait booth" loading="lazy" style="object-position:50% 30%"><figcaption>Booth crew at Robotics &amp; AI Discovery Day.</figcaption></figure></li>
+        <li><figure><img src="photos/demo-colleague.jpg" alt="Mary and a colleague holding the device" loading="lazy" style="object-position:50% 40%"><figcaption>Showing the device in the lab.</figcaption></figure></li>
+        <li><figure><img src="photos/demo-kids.jpg" alt="Mary showing the device to kids at an outdoor event" loading="lazy" style="object-position:60% 50%"><figcaption>The youngest test audience.</figcaption></figure></li>
+        <li><figure><img src="photos/world-poster.jpg" alt="Mary standing beside the HeadStrait banner at a booth" loading="lazy" style="object-position:45% 40%"><figcaption>Telling the HeadStrait story.</figcaption></figure></li>
+        <li class="wide"><figure><img src="photos/demo-tv.jpg" alt="Mary demonstrating the device next to a screen" loading="lazy" style="object-position:35% 50%"><figcaption>Walking visitors through how it works.</figcaption></figure></li>
+      </ul>
+      <figure class="feature-shot"><img src="photos/world-banner.jpg" alt="Mary and her cofounder beside the HeadStrait Labs SMART Head and Neck Immobilization banner, holding the dashboard on a phone" loading="lazy"><figcaption>SMART head and neck immobilization, on the show floor.</figcaption></figure>
     </div>
   </div>
 </section>
 
-<section class="alt" id="readme">
+
+
+<section class="alt" id="projects">
   <div class="wrap">
-    <p class="label">How I work</p>
-    <h2>The user manual</h2>
-    <p class="lede">Everything you need to know before working with me.</p>
+    <p class="label">Projects</p>
+    <h2>iMary Closet</h2>
+    <p class="lede">An iPad &ldquo;digital closet&rdquo; inspired by iCarly. It catalogs my whole wardrobe, previews outfits on a photo of me, and suggests looks based on the weather and occasion using a stylist that learns my taste.</p>
+    <div class="proj">
+      <div class="proj-text">
+        <p>In one iCarly episode, Carly&rsquo;s bedroom gets rebuilt after a fire and comes with a digital closet: she browses her clothes on a screen and picks an outfit. I wanted one of my own, so I built it.</p>
+        <p>iMary Closet is a touch-friendly web app that runs on an iPad mounted near my closet. Every piece of clothing I own is cataloged with photos and tags for category, color, season, and fit, so browsing feels like flipping through hangers, not scrolling a spreadsheet.</p>
+        <ul class="proj-list">
+          <li><b>Mirror</b>Shows outfits on a photo of me, so I can see how a top, bottoms, and shoes look together before I put them on.</li>
+          <li><b>Style me</b>Builds outfits from clothes I already own, using the live Pittsburgh forecast plus the occasion, time of day, and season.</li>
+          <li><b>A stylist that learns</b>I rate outfits (&ldquo;Not me,&rdquo; &ldquo;I&rsquo;d wear it,&rdquo; &ldquo;Love it&rdquo;). The recommender runs entirely on the device and adapts to how I actually dress, giving less weight to older ratings over time.</li>
+          <li><b>Insights</b>Most- and least-worn pieces, cost per wear, pairs that work, pieces that might be ready to go, and wardrobe gaps, including which single new piece would add the most outfits for a season.</li>
+          <li><b>Sell it kit</b>Crops face-free listing photos, writes a title and description, suggests a price, links to Depop, eBay, Poshmark, and Vinted, and tracks what I&rsquo;ve listed and sold.</li>
+        </ul>
+        <p class="proj-goal">The goal: make getting dressed easier, wear more of what I already have, and buy less.</p>
+        <p class="proj-next"><b>Coming next:</b> reading clothing tags from a photo, bags and accessories in outfit suggestions, trip packing lists, and quick logging from my iPhone.</p>
+      </div>
+      <div class="proj-shots">
+        <figure><img src="photos/closet-browse.jpg" alt="iMary Closet browse view showing bottoms hanging on a rail" loading="lazy"></figure>
+        <figure><img src="photos/closet-style.jpg" alt="iMary Closet Style me and Train my stylist screens" loading="lazy"></figure>
+        <figure><img src="photos/closet-overview.jpg" alt="iMary Closet insights showing cost per wear and pieces not worn lately" loading="lazy"></figure>
+        <figure><img src="photos/closet-insights.jpg" alt="iMary Closet insights showing wardrobe gaps and pairs that work" loading="lazy"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap path2">
+    <p class="label">Background</p>
+    <h2>The path so far</h2>
+    <div class="path-grid">
+    <div class="path-text">
+    <p class="path-sub">Work</p>
+    <div class="entry"><span class="when">2023 – now</span><h3><a class="plain" href="https://www.headstraitlabs.com/" target="_blank" rel="noopener">HeadStrait Labs <span aria-hidden="true">↗</span></a></h3><p>Cofounder &amp; Co-CEO, Pittsburgh. Took a sensor-integrated medical device from sketch to FDA registration and sale.</p></div>
+    <div class="entry"><span class="when">2021 – 2022</span><h3>Michigan Critical Care Consultants <span class="acq">(acquired by Medtronic)</span></h3><p>Quality / Manufacturing Engineer. Doubled assembly output, cut waste 25%.</p></div>
+    <p class="path-sub">Education</p>
+    <div class="entry"><span class="when">2023 · 2024</span><h3>Carnegie Mellon University</h3><p>M.S. Biomedical Engineering (4.0)</p><p>M.S. Engineering &amp; Technology Innovation Management (3.9)</p></div>
+    <div class="entry"><span class="when">2021</span><h3>Michigan State University</h3><p>B.S. Biosystems Engineering</p><p>Concentration in Biomedical Engineering</p></div>
+    <div class="entry"><span class="when">Year-long fellowship</span><h3>Carnegie Mellon Robotics Institute</h3><p>Pathways Fellowship</p><p>Robotics coursework in perception, motion planning, controls, and localization</p><p>Weekly mentorship from Dr. Howie Choset; delivered a fabricated MVP</p></div>
+    <p class="path-sub">Programs</p>
+    <div class="entry"><h3>Accelerators &amp; cohorts</h3><p>Innovation Works Robotics Factory</p><p>Prototype PGH Makers to Manufacturers</p><p>Science Venture Studio EMPOWER</p></div>
+    </div>
+    <div class="path-collage" aria-label="Graduation and fellowship photos">
+      <figure class="pc pc1"><img src="photos/grad-cmu-2.jpg" alt="Mary in her Carnegie Mellon graduation gown holding two diplomas" loading="lazy"></figure>
+      <figure class="pc pc2"><img src="photos/grad-msu-wide.jpg" alt="Mary in her Michigan State graduation gown outside the College of Engineering" loading="lazy"></figure>
+      <figure class="pc pc3"><img src="photos/cert-robotics.jpg" alt="Mary and fellow Pathways Fellows holding Robotics Institute certificates" loading="lazy"></figure>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="wins">
+  <div class="wrap">
+    <p class="label">On stage, reluctantly</p>
+    <h2>Wins &amp; recognition</h2>
+    <p class="lede">Pitch competitions, showcases, and a few big checks along the way.</p>
+      <div class="gallery g3 wide">
+        <div class="tile">
+          <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="On stage photos"><figure class="card" data-text="BNY UpPrize finals."><img src="photos/presenting.jpg" alt="Mary presenting on stage at the BNY UpPrize" draggable="false" loading="lazy"></figure><figure class="card" data-text="Walking through our MVP."><img src="photos/pitch.jpg" alt="Mary presenting a minimum viable product slide" draggable="false" loading="lazy"></figure><figure class="card" data-text="Capstone presentation at CMU."><img src="photos/stage-capstone.jpg" alt="Mary presenting in front of a projected slide" draggable="false" loading="lazy"></figure><figure class="card" data-text="Interview, lights and all."><img src="photos/stage-interview.jpg" alt="Mary being filmed for an interview" draggable="false" loading="lazy"></figure></div>
+          <p class="tile-cap"><b>On stage</b><span class="tile-text">BNY UpPrize finals.</span><span class="count"></span></p>
+        </div>
+        <div class="tile">
+          <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Big checks photos"><figure class="card" data-text="$20K, Duquesne New Venture Competition."><img src="photos/win-duquesne.jpg" alt="Mary holding a $20,000 check" draggable="false" loading="lazy"></figure><figure class="card" data-text="$100K from the Robotics Factory."><img src="photos/win-robotics.jpg" alt="Mary accepting a $100,000 Robotics Factory check" draggable="false" loading="lazy"></figure></div>
+          <p class="tile-cap"><b>Big checks</b><span class="tile-text">$20K, Duquesne New Venture Competition.</span><span class="count"></span></p>
+        </div>
+        <div class="tile">
+          <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Cohorts photos"><figure class="card" data-text="Robotics Factory cohort."><img src="photos/cohort-robotics.jpg" alt="Group photo at the Robotics Factory" draggable="false" loading="lazy"></figure><figure class="card" data-text="HealthTech Pitch Night."><img src="photos/cohort-healthtech.jpg" alt="Group photo at HealthTech Pitch Night" draggable="false" loading="lazy"></figure><figure class="card" data-text="Founders at MillerKnoll."><img src="photos/cohort-millerknoll.jpg" alt="Group photo in a MillerKnoll showroom" draggable="false" loading="lazy"></figure><figure class="card" data-text="Duquesne winners."><img src="photos/cohort-duquesne.jpg" alt="Group of winners holding checks at Duquesne" draggable="false" loading="lazy"></figure></div>
+          <p class="tile-cap"><b>Cohorts</b><span class="tile-text">Robotics Factory cohort.</span><span class="count"></span></p>
+        </div>
+      </div>
+    <ul class="wins two">
+      <li><span class="y">2026</span>1st Place, Duquesne New Venture Competition</li>
+      <li><span class="y">2026</span>U.S. Representative, Greater Zurich Area HealthTech Roadshow</li>
+      <li><span class="y">2026</span>Pittsburgh Business Times Startup to Watch</li>
+      <li><span class="y">2026</span>Semi-Finalist, AI Forge Draft Week Showcase</li>
+      <li><span class="y">2025</span>Technical.ly RealList: Most Promising Early-Stage Startup</li>
+      <li><span class="y">2025</span>Finalist, BNY UpPrize</li>
+      <li><span class="y">2025</span>Finalist, EXPLORE at Pittsburgh Tech Week</li>
+      <li><span class="y">2025</span>Finalist, PghLab</li>
+      <li><span class="y">2022</span>1st Place, Carnegie Mellon Medical Devices Pitch Competition</li>
+      <li><span class="y">—</span>Featured speaker, Allegheny Harvard Yale Princeton Club</li>
+    </ul>
+  </div>
+</section>
+
+<section class="alt" id="life">
+  <div class="wrap">
+    <p class="label">After hours</p>
+    <h2>Life outside the office</h2>
+    <p class="lede">Farm life, handmade projects, and as much time outdoors as I can get. Swipe or tap a stack to see more.</p>
+    <!-- Each tile is a stack. To add a photo, copy a <figure class="card" data-text="…">…</figure> inside that stack, point it at a file in the photos folder, and set data-text to that photo's caption. -->
+    <div class="gallery">
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Farm life photos"><figure class="card" data-text="Meet the neighbors."><video src="clips/cows.mp4" poster="clips/cows.jpg" muted loop playsinline preload="metadata" aria-label="Video of curious cows on the farm"></video></figure><figure class="card" data-text="Tractor duty."><img src="photos/farm.jpg" alt="Mary taking a selfie on a red tractor" draggable="false" loading="lazy"></figure><figure class="card" data-text="Horseback at golden hour."><img src="photos/horseback.jpg" alt="Mary on horseback in a green field" draggable="false" loading="lazy"></figure><figure class="card" data-text="Curious calves, every time."><img src="photos/farm-calf.jpg" alt="A fuzzy brown calf looking straight at the camera with black cattle behind" draggable="false" loading="lazy"></figure><figure class="card land" data-text="Foggy sunrise over the fields."><img class="land-bg" src="photos/farm-sunrise.jpg" alt="" aria-hidden="true" loading="lazy"><img src="photos/farm-sunrise.jpg" alt="Pink sunrise over misty fields and a treeline" draggable="false" loading="lazy"></figure><figure class="card land" data-text="His and hers side-by-sides."><img class="land-bg" src="photos/farm-utvs.jpg" alt="" aria-hidden="true" loading="lazy"><img src="photos/farm-utvs.jpg" alt="A red and a blue Honda Talon side-by-side parked in a field" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Farm life</b><span class="tile-text">Meet the neighbors.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Archery photos"><figure class="card" data-text="Full draw on the backyard range."><video src="clips/archery.mp4" poster="clips/archery.jpg" muted loop playsinline preload="metadata" aria-label="Video of Mary drawing a compound bow"></video></figure><figure class="card" data-text="Bowfishing: archery, but after dark."><img src="photos/bowfishing.jpg" alt="Mary at night on a boat holding a bow and a gar" draggable="false" loading="lazy"></figure><figure class="card" data-text="Bowfishing: archery, but after dark."><img src="photos/bowfishing-2.jpg" alt="Mary at night holding a gar" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Archery</b><span class="tile-text">Full draw on the backyard range.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Fishing photos"><figure class="card" data-text="Two fish, one photo."><img src="photos/fishing.jpg" alt="Mary on a boat holding two fish" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Fishing</b><span class="tile-text">Two fish, one photo.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Sewing photos"><figure class="card" data-text="Manufacturing parts for HeadStrait Labs."><img src="photos/sewing-2.jpg" alt="Mary sewing HeadStrait parts on a white sewing machine" draggable="false" loading="lazy"></figure><figure class="card" data-text="Sewing HeadStrait parts, sped up."><video src="clips/sewing-machine.mp4" poster="clips/sewing-machine.jpg" muted loop playsinline preload="metadata" aria-label="Sped-up video of Mary sewing HeadStrait parts"></video></figure><figure class="card" data-text="Restored a 1960s sewing machine."><img src="photos/sewing.jpg" alt="A vintage black sewing machine" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Sewing</b><span class="tile-text">Manufacturing parts for HeadStrait Labs.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Crochet photos"><figure class="card" data-text="Always mid-project."><img src="photos/crochet.jpg" alt="A crocheted pumpkin pie potholder" draggable="false" loading="lazy"></figure><figure class="card" data-text="A baby blanket, one row at a time."><img src="photos/crochet-3.jpg" alt="A pink crocheted blanket tied with a bow" draggable="false" loading="lazy"></figure><figure class="card" data-text="Wearing my own work."><img src="photos/crochet-hat.jpg" alt="Mary taking a mirror selfie in a pink crocheted beanie" draggable="false" loading="lazy"></figure><figure class="card" data-text="A striped scarf, fringe and all."><img src="photos/crochet-scarf.jpg" alt="A purple and white striped crocheted scarf" draggable="false" loading="lazy"></figure><figure class="card" data-text="A little something for the rearview mirror."><img src="photos/crochet-charm.jpg" alt="A crocheted charm hanging from a car mirror" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Crochet</b><span class="tile-text">Always mid-project.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Snowboarding photos"><figure class="card" data-text="Night laps, sped up 2×."><video src="clips/snowboard-v2.mp4" poster="clips/snowboard-v2.jpg" muted loop playsinline preload="metadata" aria-label="Sped-up video of Mary snowboarding down a lit slope at night"></video></figure><figure class="card" data-text="Happiest on a cold mountain."><img src="photos/snowboarding.jpg" alt="Mary sitting in the snow in snowboard gear" draggable="false" loading="lazy"></figure><figure class="card" data-text="Night riding."><img src="photos/snowboarding-2.jpg" alt="Mary kneeling on her snowboard at night" draggable="false" loading="lazy"></figure><figure class="card" data-text="Carving down the hill."><img src="photos/snowboarding-3.jpg" alt="Mary snowboarding down a slope" draggable="false" loading="lazy"></figure><figure class="card" data-text="View from the top."><img src="photos/snowboarding-4.jpg" alt="Snowboard and boots at the top of a slope" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Snowboarding</b><span class="tile-text">Night laps, sped up 2×.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Travel photos"><figure class="card" data-text="The Taj Mahal, India."><img src="photos/travel-taj.jpg" alt="Mary in front of the Taj Mahal" draggable="false" loading="lazy"></figure><figure class="card" data-text="New York City at night."><img src="photos/travel-nyc.jpg" alt="Mary on a rooftop overlooking the New York City skyline" draggable="false" loading="lazy"></figure><figure class="card land" data-text="Sand dunes and an ATV."><img class="land-bg" src="photos/offroad.jpg" alt="" aria-hidden="true" loading="lazy"><img src="photos/offroad.jpg" style="object-position:12% 50%" alt="Mary on an ATV in the desert" draggable="false" loading="lazy"></figure><figure class="card land" data-text="Paragliding over the Swiss Alps."><img class="land-bg" src="photos/travel-paraglide.jpg" alt="" aria-hidden="true" loading="lazy"><img src="photos/travel-paraglide.jpg" alt="Mary paragliding tandem high above a blue lake and green mountains" draggable="false" loading="lazy"></figure><figure class="card" data-text="On the chains at Angels Landing, Zion."><img src="photos/travel-angels.jpg" alt="Mary leaning back on the chain section of the Angels Landing trail" draggable="false" loading="lazy"></figure><figure class="card" data-text="Wading the Narrows, Zion."><img src="photos/travel-narrows.jpg" alt="Mary and a friend in waders holding walking sticks in a slot canyon river" draggable="false" loading="lazy"></figure><figure class="card" data-text="Trevi Fountain, Rome."><img src="photos/travel-trevi.jpg" alt="Mary sitting on the edge of the Trevi Fountain" draggable="false" loading="lazy"></figure><figure class="card" data-text="Montserrat, Spain."><img src="photos/travel-montserrat.jpg" alt="Mary and a friend in the courtyard of the Montserrat monastery" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Travel</b><span class="tile-text">The Taj Mahal, India.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Golf photos"><figure class="card" data-text="Working on my swing."><video src="clips/golf.mp4" poster="clips/golf.jpg" muted loop playsinline preload="metadata" aria-label="Video of Mary swinging a golf club"></video></figure></div>
+        <p class="tile-cap"><b>Golf</b><span class="tile-text">Working on my swing.</span><span class="count"></span></p>
+      </div>
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="Robotics photos"><figure class="card" data-text="Hexapod demo at CMU."><video src="clips/hexapod-5s.mp4" poster="clips/hexapod-5s.jpg" muted loop playsinline preload="metadata" aria-label="Video of a six-legged robot walking"></video></figure><figure class="card" data-text="Robot dog on the loose."><video src="clips/robot-dog-5s.mp4" poster="clips/robot-dog-5s.jpg" muted loop playsinline preload="metadata" aria-label="Video of a robot dog walking at an event"></video></figure><figure class="card" data-text="Better push-up form than me."><video src="clips/robot-pushups-5s.mp4" poster="clips/robot-pushups-5s.jpg" muted loop playsinline preload="metadata" aria-label="Video of a humanoid robot doing push-ups"></video></figure><figure class="card" data-text="Teaching the arm new moves."><img src="photos/cobot-2.jpg" alt="Mary at a cobot workstation" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>Robotics</b><span class="tile-text">Programming a cobot at CMU.</span><span class="count"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="label">Toolkit</p>
+    <h2>The spec sheet</h2>
+    <p class="lede">What I can build, and what I'm like to build with.</p>
+    <div class="toolkit">
+        <p class="sub-title">Hands-on</p>
+        <!-- To swap a sketch for a real photo or video, replace the <img class="sk" …> with an <img src="photos/…jpg"> or a <video> like the CNC one. -->
+        <ul class="tools-grid">
+        <li class="tool tall"><div class="tool-media"><img src="photos/welding.jpg" alt="Mary welding in protective gear" loading="lazy"></div><h4>MIG &amp; TIG welding</h4><p>Six months in a makers-to-manufacturers cohort.</p></li>
+        <li class="tool"><div class="tool-media"><video style="object-position:50% 66%" src="clips/cnc.mp4" poster="clips/cnc.jpg" muted loop playsinline preload="metadata" aria-label="Video of a CNC router cutting parts"></video></div><h4>CNC machining</h4><p>Routing HeadStrait parts on a ShopBot.</p></li>
+        <li class="tool"><div class="tool-media"><img class="sk" src="photos/tool-laser.png" alt="Sketch of flat pattern parts" loading="lazy"></div><h4>Laser cutting</h4><p>Flat patterns, cut fast and iterated faster.</p></li>
+        <li class="tool"><div class="tool-media"><img class="sk" src="photos/tool-3dprint.png" alt="Sketch of a resin 3D printed headplate" loading="lazy"></div><h4>3D printing</h4><p>FDM for fast iterations, SLA resin for fine detail.</p></li>
+        <li class="tool"><div class="tool-media"><img class="sk" src="photos/tool-lathe.png" alt="Sketch of a rack and pinion" loading="lazy"></div><h4>Lathe &amp; machining</h4><p>Manual lathe and mill work.</p></li>
+        <li class="tool"><div class="tool-media"><img src="photos/gen4.jpg" alt="CAD model on a laptop" loading="lazy"></div><h4>CAD</h4><p>SolidWorks and Fusion, sketch to manufacturable.</p></li>
+        <li class="tool"><!-- PCB placeholder: replace the div below with <div class="tool-media"><img src="photos/pcb-layout.jpg" alt="PCB layout"></div> --><div class="tool-media tool-ph"><span>PCB layout<small>coming soon</small></span></div><h4>Electronics &amp; sensors</h4><p>Wiring, sensor integration, and data capture.</p></li>
+        <li class="tool"><div class="tool-media"><img src="photos/sewing-2.jpg" alt="Mary sewing HeadStrait parts" loading="lazy"></div><h4>Sewing &amp; soft goods</h4><p>Straps and padding, stitched in-house.</p></li>
+        </ul>
+      </div>
+    <div class="manual">
+      <p class="sub-title">How I work</p>
     <dl class="readme">
       <div><dt>Public speaking</dt><dd>Don't love it. Very good at it anyway.<small>See: first-place finishes and pitch stages from Pittsburgh to Zurich.</small></dd></div>
       <div><dt>Slide decks</dt><dd>Great at these before AI made everyone great at them.<small>It was me and my Canva Pro subscription against the world.</small></dd></div>
+      <div><dt>Teamwork</dt><dd>Raised on team sports and sisters.<small>Also survived 4 roommates and 1 bathroom. Conflict resolution: certified.</small></dd></div>
       <div><dt>Display setup</dt><dd>One monitor: peak productivity.<small>Add a second monitor and I become unstable.</small></dd></div>
       <div><dt>Attendance</dt><dd>Rarely miss a day.<small>Favorite appointment: the dentist. Genuinely.</small></dd></div>
       <div><dt>Best environment</dt><dd>A machine shop, a whiteboard, and a hard problem.<small>Bonus points if a clinician is in the room.</small></dd></div>
     </dl>
-  </div>
-</section>
-
-<section id="life">
-  <div class="wrap">
-    <p class="label">Off the clock</p>
-    <h2>Farm kid at heart</h2>
-    <p class="lede">Farm life, handmade projects, and plenty of time outdoors. I like making things with my hands, at work and at home.</p>
-    <!-- Hobby photos load automatically from the photos folder -->
-    <div class="gallery">
-      <figure class="tile"><div class="ph" data-label="Farm life"><img src="photos/farm.jpg" alt="Farm life" onerror="this.remove()"></div><figcaption><b>Farm life</b><span>Where I learned to fix things myself.</span></figcaption></figure>
-      <figure class="tile"><div class="ph" data-label="Sewing"><img src="photos/sewing.jpg" alt="Sewing project" onerror="this.remove()"></div><figcaption><b>Sewing</b><span>Prototyping, but with fabric.</span></figcaption></figure>
-      <figure class="tile"><div class="ph" data-label="Crochet"><img src="photos/crochet.jpg" alt="Crochet project" onerror="this.remove()"></div><figcaption><b>Crochet</b><span>The only time I'm not multitasking.</span></figcaption></figure>
-      <figure class="tile"><div class="ph" data-label="Archery"><img src="photos/archery.jpg" alt="Archery" onerror="this.remove()"></div><figcaption><b>Archery</b><span>Patience, precision, early mornings.</span></figcaption></figure>
     </div>
   </div>
 </section>
 
-<section id="press">
+<section class="alt" id="press">
   <div class="wrap">
     <p class="label">Press &amp; podcasts</p>
     <h2>Where I've been featured</h2>
     <p class="lede">Interviews, articles, and episodes about my work and HeadStrait Labs.</p>
+    <div class="gallery g1">
+      <div class="tile">
+        <div class="stack" tabindex="0" role="group" aria-roledescription="photo stack" aria-label="In print photos"><figure class="card" data-text="HeadStrait made the paper."><img src="photos/press-paper-1.jpg" alt="Mary and her cofounder holding newspapers featuring HeadStrait" draggable="false" loading="lazy"></figure><figure class="card" data-text="Framed and ready to hang."><img src="photos/press-paper-2.jpg" alt="Mary and her cofounder holding framed articles" draggable="false" loading="lazy"></figure><figure class="card" data-text="The articles."><img src="photos/press-paper-3.jpg" alt="Two newspaper articles about HeadStrait Labs" draggable="false" loading="lazy"></figure></div>
+        <p class="tile-cap"><b>In print</b><span class="tile-text">HeadStrait made the paper.</span><span class="count"></span></p>
+      </div>
+    </div>
     <div class="filters" role="group" aria-label="Filter by type">
       <button type="button" data-f="all" aria-pressed="true">All</button>
       <button type="button" data-f="podcast" aria-pressed="false">Podcasts</button>
@@ -262,45 +728,29 @@
   </div>
 </section>
 
-<section class="alt" id="background">
-  <div class="wrap two-col">
-    <div>
-      <p class="label">Background</p>
-      <h2>Where I've been</h2>
-      <div class="entry"><h3>Carnegie Mellon University</h3><p>M.S. Biomedical Engineering (4.0) · M.S. Engineering &amp; Technology Innovation Management (3.9)</p></div>
-      <div class="entry"><h3>Michigan Critical Care Consultants</h3><p>Quality / Manufacturing Engineer, 2021–2022. Doubled assembly output, cut waste 25%.</p></div>
-      <div class="entry"><h3>Michigan State University</h3><p>B.S. Biosystems Engineering, 2021</p></div>
-      <div class="entry"><h3>Programs</h3><p>Pathways Fellowship (CMU Robotics Institute) · Innovation Works Robotics Factory · Prototype PGH · EMPOWER Accelerator</p></div>
-      <p class="tools">SolidWorks · Fusion · Python · C++ · MATLAB · SQL · Git · MIG/TIG welding · Canva Pro (obviously)</p>
-    </div>
-    <div class="stage">
-      <p class="label">On stage, reluctantly</p>
-      <h2>A few wins</h2>
-      <div class="ph" data-label="Me, presenting (reluctantly)"><img src="photos/presenting.jpg" alt="Mary presenting on stage" onerror="this.remove()"></div>
-      <ul class="wins">
-        <li><span class="y">2026</span>1st Place, Duquesne New Venture Competition</li>
-        <li><span class="y">2026</span>U.S. Representative, Greater Zurich HealthTech Roadshow</li>
-        <li><span class="y">2026</span>Pittsburgh Business Times Startup to Watch</li>
-        <li><span class="y">2025</span>Technical.ly RealList · BNY UpPrize Finalist</li>
-        <li><span class="y">2022</span>1st Place, CMU Medical Devices Pitch</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <section class="contact" id="contact">
   <div class="wrap">
     <p class="label">Contact</p>
     <h2>Let's build something</h2>
     <p>A role, a collaboration, or a medical device problem you're stuck on. I'd love to hear from you.</p>
-    <a class="btn" href="mailto:marysquire2021@gmail.com">Email me</a><a class="btn ghost" href="https://linkedin.com/in/maryesquire" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="mailto:marysquire2021@gmail.com">Email me</a><button type="button" class="btn ghost copy-num" data-num="734-474-3286" data-label="734-474-3286">734-474-3286</button><a class="btn ghost" href="https://linkedin.com/in/maryesquire" target="_blank" rel="noopener">LinkedIn</a>
     <small>© 2026 Mary E. Squire · Pittsburgh, PA</small>
   </div>
 </section>
 
+<dialog id="gen-dialog" aria-labelledby="gen-dialog-title">
+  <div class="gd-bar"><span id="gen-dialog-title" class="gd-step"></span><div class="gd-nav"><button type="button" data-step="-1" aria-label="Previous step">&larr;</button><button type="button" data-step="1" aria-label="Next step">&rarr;</button><button type="button" class="gd-close" aria-label="Close">&times;</button></div></div>
+  <div class="gd-body" id="gen-dialog-body"></div>
+</dialog>
+  <template id="gen-1"><div class="gd-media"><figure><img src="photos/hsl-gen1.jpg" alt="The TRIclamp prototype holding a foam head" loading="lazy"></figure><figure><img src="photos/sketch-triclamp.jpg" alt="TRIclamp concept sketch with labeled joints and padding" loading="lazy"></figure><!-- CAD placeholder: replace this figure with <figure><img src="photos/cad-gen1.jpg" alt="CAD model of generation 1"></figure> --><figure class="cad-ph"><span>CAD model<small>coming soon</small></span></figure></div><div class="gd-text"><p class="gd-kicker">Gen 01 · Carnegie Mellon Medical Devices course</p><h3>TRIclamp concept</h3><p class="gd-intro">First prototype, designed for neurosurgery as a new approach to rigid skull clamps.</p><ul><li>Three padded, non-invasive contact points that spread pressure instead of pinning the skull</li><li>Pads rotate 360° with adjustable clamp width and rotating joints for surgical access</li><li>Attaches to the surgical table</li><li>Designed in SolidWorks, 3D printed, and bolted together</li></ul></div></template>
+  <template id="gen-2"><div class="gd-media"><figure><img src="photos/sketch-design2.jpg" alt="Design 2.0 sketch: headband, quick-release hinge, sensor layout, and flat-pack layers" loading="lazy"></figure><figure><img src="photos/hsl-gen2.jpg" alt="Soft vinyl prototype with onboard electronics" loading="lazy"></figure><figure><img src="photos/build-early.jpg" alt="Early electronics taped to the prototype" loading="lazy"></figure><figure><img src="photos/gen3.jpg" alt="Prototype with electronics and sensors attached" loading="lazy"></figure><!-- CAD placeholder: replace this figure with <figure><img src="photos/cad-gen2.jpg" alt="CAD model of generation 2"></figure> --><figure class="cad-ph"><span>CAD model<small>coming soon</small></span></figure></div><div class="gd-text"><p class="gd-kicker">Gen 02 · Design 2.0</p><h3>Semi-rigid &amp; sensor-integrated</h3><p class="gd-intro">The first field-oriented prototype, introducing a lightweight, semi-rigid structure, motion tracking, and contact sensing.</p><ul><li><b>Early electronics integration:</b> Arduino-based electronics assembled on breadboards and mounted to the shoulder panel.</li><li><b>Dual motion sensors:</b> Two 3-axis IMUs, positioned at the head and chest, measure relative head-to-torso movement.</li><li><b>Pressure-sensitive contact detection:</b> Force-sensitive resistors (FSRs) detect head contact with the support and help evaluate localized pressure.</li><li><b>Manufacturing-driven design:</b> A layered foam-metal-foam structure designed to be cut from rectangular stock, simplifying fabrication and reducing material waste, production time, and cost.</li><li><b>Design limitations:</b> Metal components and wired sensor connections through the backplate raised imaging compatibility concerns. This highlighted the need for wireless communication and removable sensors that can be detached before imaging.</li></ul></div></template>
+  <template id="gen-3"><div class="gd-media"><figure><img src="photos/hsl-gen3.jpg" alt="White molded splint with foam pads and straps" loading="lazy"></figure><figure><img src="photos/shop-device.jpg" alt="The molded splint mounted on a wall, seen from an angle" loading="lazy"></figure><figure><img src="photos/test-holding.jpg" alt="Mary holding up the molded splint in the shop" loading="lazy"></figure><figure class="wide"><img src="photos/hsl-gen3-render.jpg" alt="3D rendering of the splint on a patient, with head supports, shoulder pads, sensors, and straps" loading="lazy"></figure><figure><video src="clips/gen3-cnc.mp4" poster="clips/gen3-cnc.jpg" muted loop autoplay playsinline aria-label="CNC router cutting the splint from a white plastic sheet"></video></figure><figure><img src="photos/gen1.jpg" alt="Hand sketch of the splint outline with dimensions" loading="lazy"></figure><!-- CAD placeholder: replace this figure with <figure><img src="photos/cad-gen3.jpg" alt="CAD model of generation 3"></figure> --><figure class="cad-ph"><span>CAD model<small>coming soon</small></span></figure></div><div class="gd-text"><p class="gd-kicker">Gen 03 · Design 3.0</p><h3>Molded splint</h3><p class="gd-intro">The first rigid, contoured splint designed to provide structured head and torso support.</p><ul><li><b>CAD-designed:</b> Developed in SolidWorks in collaboration with Nottingham Spirk.</li><li><b>Molded construction:</b> CNC-routed from flat stock, then heat-molded to create anatomical curves.</li><li><b>Patient securement:</b> Foam head pads, a textured grip pad, and torso straps.</li><li><b>Design limitations:</b> Manual heat molding introduced inconsistencies between units, and limited adjustability made it difficult to accommodate different head and chest sizes.</li></ul><p class="gd-credit">In collaboration with Nottingham Spirk</p></div></template>
+  <template id="gen-4"><div class="gd-media"><figure><img src="photos/hsl-gen4.jpg" alt="CNC-cut board with red straps and quick-release buckles" loading="lazy"></figure><figure><video src="clips/gen4-lock.mp4" poster="clips/gen4-lock.jpg" muted loop autoplay playsinline aria-label="Hands working the headplate locking mechanism on a mannequin"></video></figure><figure><img src="photos/gen4.jpg" alt="CAD model of the head and back plates in Autodesk Fusion" loading="lazy"></figure><figure><img src="photos/shop-cnc-bed.jpg" alt="CNC router bed with a sheet ready to cut" loading="lazy"></figure><figure><img src="photos/shop-parts.jpg" alt="Two finished boards with red straps" loading="lazy"></figure><!-- CAD placeholder: replace this figure with <figure><img src="photos/cad-gen4.jpg" alt="CAD model of generation 4"></figure> --><figure class="cad-ph"><span>CAD model<small>coming soon</small></span></figure></div><div class="gd-text"><p class="gd-kicker">Gen 04 · Design 4.0</p><h3>Rotating-rail design</h3><p class="gd-intro">A return to flat components, introducing adjustable sizing, wireless sensors, and a more adaptable fit.</p><ul><li><b>Flat-pack construction:</b> Designed in Autodesk Fusion with CNC-cut head and backplates.</li><li><b>Adjustable fit:</b> A rotating rail enables vertical headplate adjustment, and removing rigid chest sections accommodates a wider range of body sizes.</li><li><b>Headplate stabilization:</b> A custom locking mechanism prevents parallelogram deformation and maintains alignment.</li><li><b>Wireless sensing:</b> Dual motion sensors communicate using ESP-NOW, eliminating wired connections between the head and torso.</li><li><b>Clinical evaluation:</b> Used in a UPMC clinical study involving 30 participants.</li><li><b>Design limitations:</b> No lateral headplate adjustment, and the headplate-to-backplate connection required threading components together, which complicated assembly.</li></ul></div></template>
+  <template id="gen-5"><div class="gd-media"><figure><img src="photos/hsl-gen5.jpg" alt="Final HeadStrait device with a red head strap" loading="lazy"></figure><figure><img src="photos/hsl-gen5-open.jpg" alt="Top-down view of the open splint with head supports and straps" loading="lazy"></figure><figure><img src="photos/hsl-gen5-folded.jpg" alt="The splint folded closed with straps tucked in" loading="lazy"></figure><figure><img src="photos/sketch-backplate.jpg" alt="Sketch planning the backplate, headplate, and twist-and-lock mechanism" loading="lazy"></figure><figure><img src="photos/sketch-details.jpg" alt="Detail sketch of countersinks, cross-section, and strap routing" loading="lazy"></figure><figure><img src="photos/test-mannequin.jpg" alt="Fit-testing on a CPR mannequin" loading="lazy"></figure><!-- CAD placeholder: replace this figure with <figure><img src="photos/cad-gen5.jpg" alt="CAD model of generation 5"></figure> --><figure class="cad-ph"><span>CAD model<small>coming soon</small></span></figure></div><div class="gd-text"><p class="gd-kicker">Gen 05 · On the market</p><h3>FDA-registered &amp; market-ready</h3><p class="gd-intro">The transition from prototype to commercial product, combining improved adjustability, simplified deployment, and scalable manufacturing.</p><ul><li><b>Expanded adjustability:</b> Lateral headplate adjustment accommodates different head sizes.</li><li><b>Locking hinges:</b> Integrated into the head and backplates for secure positioning and compact folding.</li><li><b>Hybrid manufacturing:</b> A combination of 2D and 3D CNC machining, with select PETG components currently 3D-printed.</li><li><b>Compact storage:</b> Folds flat to a 26" × 8" × 3" footprint for efficient storage and rapid deployment.</li><li><b>Field testing:</b> Evaluated with AHN LifeFlight to assess application and usability.</li><li><b>Commercial launch:</b> FDA-registered and available for sale.</li></ul><p class="gd-credit">In collaboration with David Weckerly</p></div></template>
 <script>
   (function () {
-    var words = ["an engineer", "a founder", "an outdoor enthusiast", "a farm kid", "a sports fan (watching and playing)", "kind of athletic", "able to lift 50 lbs (as required)", "a maker", "a reluctant (but good) presenter", "a one-monitor person"];
+    var words = ["an engineer", "a founder", "a golfer in progress", "an inventor", "kind of athletic", "handy with power tools"];
     var el = document.getElementById("typed");
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var w = 0, c = words[0].length, del = true;
@@ -330,6 +780,119 @@
         items.forEach(function (li) { li.style.display = (f === "all" || li.getAttribute("data-type") === f) ? "" : "none"; });
       });
     });
+  })();
+</script>
+<script>
+  (function () {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function sync(v) {
+      var want = !reduce && v._visible && (v._isTop !== false);
+      if (want) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+    }
+    window.__clipSync = sync;
+    var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target._visible = e.isIntersecting; sync(e.target); });
+    }, { threshold: 0.25 }) : null;
+    document.querySelectorAll("video").forEach(function (v) { if (io) io.observe(v); else { v._visible = true; sync(v); } });
+  })();
+</script>
+<script>
+  (function () {
+    var offs = [{x:0,y:0,r:0},{x:10,y:6,r:5},{x:-9,y:9,r:-5},{x:5,y:12,r:2}];
+    document.querySelectorAll(".stack").forEach(function (stack) {
+      var cards = Array.prototype.slice.call(stack.querySelectorAll(".card"));
+      var n = cards.length, order = cards.map(function (_, i) { return i; }), shown = 0;
+      var count = stack.parentNode.querySelector(".count");
+      if (n > 1) stack.classList.add("multi");
+      function layout() {
+        order.forEach(function (ci, p) {
+          var c = cards[ci], o = offs[Math.min(p, offs.length - 1)];
+          c.style.zIndex = n - p;
+          c.style.opacity = p < offs.length ? 1 : 0;
+          c.style.transform = "translate(" + o.x + "px," + o.y + "px) rotate(" + o.r + "deg) scale(" + (1 - Math.min(p, 3) * 0.03) + ")";
+          c.setAttribute("aria-hidden", p === 0 ? "false" : "true");
+        });
+        if (count) count.textContent = n > 1 ? (shown % n + 1) + " of " + n : "";
+        cards.forEach(function (c, i) { var v = c.querySelector("video"); if (v) { v._isTop = (i === order[0]); window.__clipSync && window.__clipSync(v); } });
+        var tt = stack.parentNode.querySelector(".tile-text"), top = cards[order[0]];
+        if (tt && top.dataset.text) tt.textContent = top.dataset.text;
+      }
+      if (n < 2) { layout(); return; }
+      function next(dir) {
+        var top = cards[order[0]], sgn = dir || 1;
+        top.style.transform = "translate(" + (sgn * 140) + "%,-6%) rotate(" + (sgn * 20) + "deg)";
+        top.style.opacity = 0;
+        setTimeout(function () { order.push(order.shift()); shown++; layout(); }, 220);
+      }
+      function prev() { order.unshift(order.pop()); shown = (shown - 1 + n) % n; layout(); }
+      stack.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") { e.preventDefault(); next(1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+      });
+      var sx = 0, sy = 0, dx = 0, dragging = false, moved = false, cur = null;
+      stack.addEventListener("pointerdown", function (e) {
+        cur = cards[order[0]]; if (e.target.closest(".card") !== cur) return;
+        dragging = true; moved = false; sx = e.clientX; sy = e.clientY; dx = 0;
+        cur.classList.add("dragging"); cur.setPointerCapture(e.pointerId);
+      });
+      stack.addEventListener("pointermove", function (e) {
+        if (!dragging) return;
+        dx = e.clientX - sx; var dy = (e.clientY - sy) * 0.3;
+        if (Math.abs(dx) > 4) moved = true;
+        cur.style.transform = "translate(" + dx + "px," + dy + "px) rotate(" + (dx / 14) + "deg)";
+      });
+      function end() {
+        if (!dragging) return; dragging = false; cur.classList.remove("dragging");
+        if (!moved) { next(1); return; }
+        if (Math.abs(dx) > 50) next(dx > 0 ? 1 : -1); else layout();
+      }
+      stack.addEventListener("pointerup", end);
+      stack.addEventListener("pointercancel", end);
+      layout();
+    });
+  })();
+</script>
+<script>
+  (function () {
+    var btn = document.querySelector(".phone-btn"), pop = document.getElementById("phone-pop");
+    if (btn && pop) {
+      btn.addEventListener("click", function (e) { e.stopPropagation(); var open = pop.hidden; pop.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); });
+      document.addEventListener("click", function (e) { if (!pop.hidden && !pop.contains(e.target)) { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); } });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.focus(); } });
+    }
+    document.querySelectorAll(".copy-num").forEach(function (b) {
+      var orig = b.textContent;
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var num = b.getAttribute("data-num");
+        function done() { b.textContent = "Copied!"; setTimeout(function () { b.textContent = orig; }, 1600); }
+        if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(num).then(done, done); }
+        else { var t = document.createElement("textarea"); t.value = num; t.style.position = "fixed"; t.style.opacity = "0"; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (x) {} document.body.removeChild(t); done(); }
+      });
+    });
+  })();
+</script>
+<script>
+  (function () {
+    var dlg = document.getElementById("gen-dialog"), body = document.getElementById("gen-dialog-body"), step = document.getElementById("gen-dialog-title"), cur = 1, opener = null;
+    if (!dlg) return;
+    function show(n) {
+      cur = (n + 4) % 5 + 1;
+      body.innerHTML = ""; body.appendChild(document.getElementById("gen-" + cur).content.cloneNode(true));
+      var t = body.querySelector(".gd-text"); var c = body.querySelectorAll(".gd-media figure:not(.cad-ph)").length;
+      if (c > 1) { var h = document.createElement("p"); h.className = "gd-hint"; h.textContent = c + " photos and sketches. Scroll sideways to see them all."; t.appendChild(h); }
+      step.textContent = "Step " + cur + " of 5";
+      body.querySelectorAll("video").forEach(function (v) { v.muted = true; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); });
+      body.scrollTop = 0;
+    }
+    document.querySelectorAll(".gen-btn").forEach(function (b) {
+      b.addEventListener("click", function () { opener = b; show(+b.dataset.gen); if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); });
+    });
+    dlg.querySelectorAll("[data-step]").forEach(function (b) { b.addEventListener("click", function () { show(cur + +b.dataset.step); }); });
+    dlg.querySelector(".gd-close").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+    dlg.addEventListener("close", function () { if (opener) opener.focus(); });
   })();
 </script>
 </body>
